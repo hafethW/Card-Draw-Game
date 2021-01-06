@@ -6,5 +6,5 @@ For example:
 
 If you run out of cards, you lose.
 
-"index.html" contains all the html and JS code.
+"index.html" contains all the HTML and Javascript code.
 "styles.css" contains all the CSS properties.
