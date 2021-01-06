@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+
+  </head>
+
+  <body>
+<h1 id="h1">52 CARDS REMAIN</h1>
+  <div class="outerdiv">
+
+    <div class="cardiv">
+      <img id="1" class="card" src="https://deckofcardsapi.com/static/img/AH.png">
+    </div>
+    <br>
+
+    <button onclick="draw(1)" class="button button2">.</button>
+  </div>
+
+  <div class="outerdiv">
+    <div class="cardiv">
+      <img id="2" class="card" src="https://deckofcardsapi.com/static/img/AH.png">
+    </div>
+    <br>
+    <button onclick="draw(2)" class="button button2">.</button>
+  </div>
+
+  <br>
+
+  <div class="outerdiv">
+    <div class="cardiv">
+      <img id="3" class="card" src="https://deckofcardsapi.com/static/img/AH.png">
+    </div>
+    <br>
+    <button onclick="draw(3)" class="button button2">.</button>
+  </div>
+
+  <div class="outerdiv">
+    <div class="cardiv">
+      <img id="4" class="card" src="https://deckofcardsapi.com/static/img/AH.png">
+    </div>
+    <br>
+    <button onclick="draw(4)" class="button button2">.</button>
+  </div>
+
+  </body>
+
+
+
+
+
+  <script>
+var id;
+var totalCards;
+var suit1 ="NONE";
+var value1 = "NONE";
+var suit2 ="NONE";
+var value2 = "NONE";
+var suit3 ="NONE";
+var value3 = "NONE";
+var suit4 ="NONE";
+var value4 = "NONE";
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        id = JSON.parse(xhttp.responseText).deck_id;
+        totalCards = JSON.parse(xhttp.responseText).remaining;
+        console.log(totalCards);
+    }
+};
+
+    xhttp.open("GET", "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", true);
+    xhttp.send();
+
+
+function draw(idNum){
+  if(totalCards>0){
+    var xhttp2 = new XMLHttpRequest();
+    xhttp2.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Typical action to be performed when the document is ready:
+           answer=JSON.parse(xhttp2.responseText)
+           if (idNum ==1){
+             suit1 = answer.cards[0].suit
+             value1 = answer.cards[0].value
+           }
+           else if (idNum ==2){
+             suit2 = answer.cards[0].suit
+             value2 = answer.cards[0].value
+           }
+           else if (idNum ==3){
+             suit3 = answer.cards[0].suit
+             value3 = answer.cards[0].value
+           }
+           else if (idNum ==4){
+             suit4 = answer.cards[0].suit
+             value4 = answer.cards[0].value
+           }
+
+           document.getElementById(idNum).src=answer.cards[0].image;
+           document.getElementById(idNum).style.visibility="visible";
+           totalCards-=1;
+           document.getElementById('h1').innerHTML = totalCards + " CARDS REMAIN"
+           if( (suit1!="NONE" && suit1==suit2 && suit1==suit3 && suit1==suit4) || (value1!="NONE" && value1==value2 && value1==value3 && value1==value4)){
+             win();
+           }
+  console.log(JSON.parse(xhttp2.responseText))
+        }
+    };
+    xhttp2.open("GET", "https://deckofcardsapi.com/api/deck/"+id+"/draw/?count=1", true);
+    xhttp2.send();
+  }
+  else{
+    alert("You Ran Out Of Cards. You Lost!")
+  }
+}
+
+function win(){
+  alert("You Won!");
+}
+  </script>
+
+
+</html>

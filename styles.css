@@ -1,0 +1,68 @@
+body{
+  background-image: url('cardback.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:150px;
+  padding-top:50px;
+}
+
+.card{
+  padding:0px;
+  visibility: hidden;
+}
+
+.cardiv{
+  display:inline-block;
+  border-style:dashed;
+  padding:0px;
+  border-color:white
+
+}
+
+.outerdiv{
+  display:inline-block;
+}
+
+.button1 {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button {
+  background-image: url('draw.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15px 32px;
+  color:white;
+  text-align: center;
+  display: inline-block;
+  font-size: 26px;
+  width:100%;
+  margin-top:15px;
+  border-style: double;
+  border-color: white;
+
+}
+
+
+.outer{
+  padding:0px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.outerdiv{
+  padding:0px;
+  margin:50px;
+  margin-top:10px;
+}
+
+h1{
+  font-size:100px;
+  font-family: fantasy;
+  color:white;
+  margin-bottom:10px;
+}
